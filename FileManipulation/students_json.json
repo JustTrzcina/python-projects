@@ -1,0 +1,22 @@
+{
+    "students": [
+      {
+        "name": "John Doe",
+        "age": 25,
+        "university": "University of Example",
+        "degree": "Bachelor of Science"
+      },
+      {
+        "name": "Jane Smith",
+        "age": 22,
+        "university": "Another University",
+        "degree": "Master of Arts"
+      },
+      {
+        "name": "Sam Johnson",
+        "age": 28,
+        "university": "Yet Another University",
+        "degree": "Doctor of Philosophy"
+      }
+    ]
+  }

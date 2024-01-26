@@ -1,0 +1,22 @@
+[
+    {
+        "make": "Toyota",
+        "model": "Camry"
+    },
+    {
+        "make": "Honda",
+        "model": "Accord"
+    },
+    {
+        "make": "Ford",
+        "model": "Mustang"
+    },
+    {
+        "make": "Chevrolet",
+        "model": "Cruze"
+    },
+    {
+        "make": "Tesla",
+        "model": "Model 3"
+    }
+]
