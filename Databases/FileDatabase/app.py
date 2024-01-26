@@ -23,21 +23,22 @@ def menu():
 
 def add_book():
     title = input('Title of the book: ')
-    author = input('Author of the book')
-    print(database.add_book(title,author))
+    author = input('Author of the book: ')
+    database.add_book(title,author)
 
 def list_books():
     books = database.get_all_books()
     for book in books:
-        print(book)
+        read = 'YES' if book['read'] else 'NO'
+        print(f'{book['title']} by {book['author']}, read: {read}')
 
 def mark_as_read():
     title = input ('Enter the title of book you want to mark as read: ')
-    print(database.mark_as_read(title))
+    database.mark_as_read(title)
 
 def delete_book():
     title = input ('Enter the title of book you want to delete: ')
-    print(database.delete_book(title))
+    database.delete_book(title)
 
 operations = {
     'a':add_book,
