@@ -83,8 +83,10 @@ users = [
     {"username": "charlie", "password": "strongpwd789"},
 ]
 
-users = [User.from_dict(user) for user in users]
-users = map(User.from_dict,users)
+user_objects = [User.from_dict(user) for user in users]
+user_objects = map(User.from_dict,users)
+
+user_objects = [User(**data) for data in users]
 
 users_with_locations = [
     {"name": "Alice", "location": "New York"},
@@ -100,3 +102,79 @@ users_nearby = [user for user in users_with_locations if user['name']==your_loca
 
 if any(users_nearby):
     print('You are not alone')
+
+accounts = {
+    'checking':1900,
+    'savings':5320.45
+}
+
+def add_balance(amount,name = 'checking'):
+    accounts[name]+=amount
+    return accounts[name]
+
+transactions=[
+    (-182,'checking'),
+    (-234,'checking'),
+    (-53,'checking'),
+    (182,'savings'),
+    (120,'savings'),
+    (-182,'checking'),
+    (-182,'checking'),
+]
+
+for t in transactions:
+    add_balance(*t)
+
+from collections import Counter
+
+temperatures = [12.3,14.0,9.0,15.3,10.5,12.0]
+temperature_counter = Counter(temperatures)
+print(temperature_counter)
+
+from collections import defaultdict
+
+coworkers = [('John','MIT'),('Katie','Oxford'),('Charlie','UMK'),('Katie','Cambrdige')]
+
+places = defaultdict(list)
+for coworker, place in coworkers:
+    places[coworker].append(place)
+
+print(places)
+
+from collections import OrderedDict
+
+o = OrderedDict()
+o['John'] = 6
+o['Steve'] = 12
+o['Katie'] = 3
+print (o)
+o.move_to_end('John')
+o.move_to_end('Katie', last=False),
+print (o)
+o.popitem()
+print(o)
+
+from collections import namedtuple
+
+account = ('checking',1700.00)
+print(account[0])
+print(account[1])
+
+Account = namedtuple('Account',['name','balance'])
+
+account = Account('checking',1700.00)
+print(account)
+print(account.balance)
+
+accountNamedTuple = Account(*account)
+print(accountNamedTuple._asdict()['balance'])
+
+from collections import deque
+
+friends = deque(('John','Steve','Katie','Anna'))
+friends.append('Charlie')
+friends.appendleft('Giorgio')
+print(friends)
+friends.pop()
+friends.popleft()
+print(friends)
