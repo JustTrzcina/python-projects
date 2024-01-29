@@ -178,3 +178,90 @@ print(friends)
 friends.pop()
 friends.popleft()
 print(friends)
+
+from datetime import datetime, timezone,timedelta
+print(datetime.now())
+print(datetime.now(timezone.utc))
+today = datetime.now(timezone.utc)
+tomorrow = today +timedelta(days=1)
+print(today.strftime('%d-%m-%Y %H:%M'))
+
+import time
+
+def measure_runtime(func):
+    start = time.time()
+    func()
+    stop = time.time()
+    print(stop-start)
+
+def powers(limit):
+    return [x**2 for x in range(limit)]
+measure_runtime(lambda:powers(500000))
+
+import timeit
+print(timeit.timeit("[x**2 for x in range(10)]"))
+print(timeit.timeit("list(map(lambda x:x**2,range(10)))"))
+
+import re
+
+email = 'steve@mine.com'
+expression = '[a-z]+'
+matches = re.findall(expression,email)
+print(matches)
+
+price = 'Price: $234.32'
+expression = 'Price: \$([0-9,]*\.[0-9]*)'
+matches = re.search(expression,price)
+print(matches.group(0))
+print(matches.group(1))
+
+import logging
+logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+    datefmt='%d-%m-%Y:%H:%M:%S',
+    level=logging.DEBUG,
+    filename="logs.txt")
+
+logger = logging.getLogger('books')
+
+logger = logging.getLogger('my_app')
+logger.debug("This is a debug log")
+logger.info("This is an info log")
+logger.critical("This is critical")
+logger.error("An error occurred")
+"""
+debug --> info --> warning --> error --> critical
+"""
+logger = logging.getLogger('books.database')
+
+def greet():
+    print('Hello')
+
+def before_and_after(func):
+    print('Before...')
+    func()
+    print('After')
+
+before_and_after(lambda:5)
+
+movies_list = [
+    {"name": "The Shawshank Redemption", "director": "Frank Darabont"},
+    {"name": "The Godfather", "director": "Francis Ford Coppola"},
+    {"name": "Pulp Fiction", "director": "Quentin Tarantino"},
+    {"name": "The Dark Knight", "director": "Christopher Nolan"},
+    {"name": "Schindler's List", "director": "Steven Spielberg"},
+    {"name": "Inception", "director": "Christopher Nolan"},
+    {"name": "Forrest Gump", "director": "Robert Zemeckis"},
+    {"name": "The Matrix", "director": "Lana and Lilly Wachowski"},
+    {"name": "The Silence of the Lambs", "director": "Jonathan Demme"},
+    {"name": "The Lord of the Rings: The Fellowship of the Ring", "director": "Peter Jackson"},
+]
+
+def find_movie(expected, finder):
+    for movie in movies_list:
+        if finder(movie)==expected:
+            return movie
+
+find_by = input("Search by which property? (name|director):  ")
+looking_for = input("Enter the property value: ")
+movie = find_movie(looking_for, lambda movie:movie[find_by])
+print(movie or 'No movies found.')
