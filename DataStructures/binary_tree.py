@@ -61,7 +61,7 @@ class BinaryTree:
                 return current_node
             elif value>current_node.value:
                 current_node = current_node.right
-            elif current_node<current_node.value:
+            else:
                 current_node = current_node.left
     
     def find_rightmost(self,node:Node)->Node:
@@ -75,24 +75,42 @@ class BinaryTree:
         to_delete_parent = self.find_parent(value)
 
         if to_delete.left and to_delete.right:
-            pass
-        if to_delete.left or to_delete.right:
-            pass
+            rightmost = self.find_rightmost(to_delete.left)
+            rightmost_parent = self.find_parent(rightmost.value)
+
+            if rightmost_parent != to_delete:
+                rightmost_parent.right = rightmost.left
+                rightmost.left = to_delete.left
+            rightmost.right = to_delete.right
+
+            if to_delete == to_delete_parent.left:
+                to_delete_parent.left = rightmost
+            elif to_delete == to_delete_parent.right:
+                to_delete_parent.right = rightmost
+            else:
+                self.head = rightmost
+        elif to_delete.left or to_delete.right:
+            if to_delete == to_delete_parent.left:
+                to_delete_parent.left = to_delete.right or to_delete.left
+            elif to_delete == to_delete_parent.right:
+                to_delete_parent.right = to_delete.right or to_delete.left
+            else:
+                self.head = to_delete.right or to_delete.left
         else:
             if to_delete == to_delete_parent.left:
-                to_delete_parent.left=None
+                to_delete_parent.left = None
             elif to_delete == to_delete_parent.right:
                 to_delete_parent.right = None
             else:
                 self.head = None
 
 
-
-
-
 new_tree = BinaryTree(Node(33))
-new_tree.add(Node(3))
-new_tree.add(Node(78))
-    
+
+nodes = [2, 6, 9, 7, 8, 7.5, 12, 11, 14, 56, 98]
+
+for n in nodes:
+    new_tree.add(Node(n))
+
 new_tree.inorder()
-print(new_tree.find(3))
+print(new_tree.find(9))
