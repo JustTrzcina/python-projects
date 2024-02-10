@@ -93,4 +93,4 @@ def is_anagram_streamlined(entry_1:str,entry_2:str):
 
     return True
 
-print(is_anagram_streamlined('chujjj','juhccc'))
+print(is_anagram_streamlined('chujjj','juhcccccc'))

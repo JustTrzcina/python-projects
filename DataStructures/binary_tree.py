@@ -1,4 +1,7 @@
 class Node:
+    '''
+        Implements node for use in binary tree datastructure
+    '''
     def __init__(self,value) -> None:
         self.value = value
         self.left = None
@@ -8,6 +11,9 @@ class Node:
         return f'<Node {self.value}>'
     
 class BinaryTree:
+    '''
+        Implements binary tree datastructure
+    '''
     def __init__(self,head:Node) -> None:
         self.head = head
 
