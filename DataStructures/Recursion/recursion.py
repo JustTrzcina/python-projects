@@ -1,6 +1,6 @@
 '''Explains basics of recursion'''
 
-from typing import List
+from typing import List,Callable
 
 def count_down(num:int):
     '''
@@ -118,3 +118,19 @@ def is_palindrome(string:str):
     return False
 
 print(is_palindrome('amanaplanacanalpanama'))
+
+def some_recursion(arr:List[int],func:Callable[[int],bool]):
+    '''
+        The function returns true if a single 
+        value in the array returns true when passed 
+        to the callback. Otherwise it returns false.
+    '''
+    if len(arr) == 0:
+        return False
+    if func(arr[0]):
+        return True
+    if len(arr) ==1:
+        return False
+    return some_recursion(arr[1:],func)
+
+print(some_recursion([1,3,5,7],lambda x:x%2==0))
