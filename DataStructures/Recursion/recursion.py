@@ -134,3 +134,23 @@ def some_recursion(arr:List[int],func:Callable[[int],bool]):
     return some_recursion(arr[1:],func)
 
 print(some_recursion([1,3,5,7],lambda x:x%2==0))
+
+def flatten(arr):
+    '''
+        accepts an array of arrays and returns 
+        a new array with all values flattened.
+    '''
+    result = []
+
+    def _flatten(arr):
+        for item in arr:
+            if isinstance(item, list):
+                _flatten(item)
+            else:
+                result.append(item)
+
+    _flatten(arr)
+    return result
+
+flattened_array = flatten([1, 2, [3, 4, [5, 6]], 7, [8, [9]]])
+print(flattened_array)  
