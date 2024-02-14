@@ -59,7 +59,7 @@ class UserLogout(MethodView):
         BLOCKED.add(jti)
         return {'message':'Successfully logged out.'}
     
-@blp.oute('/refresh')
+@blp.route('/refresh')
 class TokenRefresh(MethodView):
     @jwt_required(refresh=True)
     def post(self):
