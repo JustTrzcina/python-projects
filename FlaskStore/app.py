@@ -2,6 +2,7 @@ import os
 from flask import Flask,jsonify
 from flask_smorest import Api
 from db import db
+from dotenv import load_dotenv
 import models
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
@@ -12,7 +13,7 @@ from blocklist import BLOCKED
 
 def create_app(db_url=None):
     app = Flask(__name__)
-
+    load_dotenv()
     app.config['PROPAGATE_EXCEPTIONS']=True
     app.config['API_TITLE'] = 'Stores REST API'
     app.config['API_VERSION'] = 'v1'
