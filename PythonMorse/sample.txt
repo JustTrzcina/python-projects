@@ -1,1 +1,1 @@
-long sentence
+This is a test sequence
